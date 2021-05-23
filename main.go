@@ -2,6 +2,7 @@ package main
 
 import (
 	"net/http"
+	"os"
 	"time"
 
 	"github.com/go-chi/chi/v5"
@@ -29,6 +30,7 @@ func main() {
 
 	r.Route("/v1", func(r chi.Router) {
 		r.Get("/time", getTime)
+		r.Get("/hostname", getHostName)
 	})
 
 	http.ListenAndServe(":3000", r)
@@ -38,4 +40,9 @@ func getTime(w http.ResponseWriter, r *http.Request) {
 	var now string = time.Now().Format(timeFormat)
 	var out string = paragraph(bold(now))
 	render.HTML(w, r, out)
+}
+
+func getHostName(w http.ResponseWriter, r *http.Request) {
+	name, _ := os.Hostname()
+	render.HTML(w, r, paragraph(bold(name)))
 }
