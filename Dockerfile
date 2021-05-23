@@ -1,7 +1,7 @@
 # https://medium.com/tourradar/lean-golang-docker-images-using-multi-stage-builds-1015a6b4d1d1
 
 # Prepare the env for building
-ARG GO_VERSION=1.16.3
+ARG GO_VERSION=1.16.4
 FROM golang:${GO_VERSION}-alpine AS dev
 
 ENV APP_NAME="main" \

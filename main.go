@@ -26,7 +26,7 @@ func main() {
 
 	// Routes
 	r.Get("/", func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte("Welcome, why not try /v1/time"))
+		render.HTML(w, r, paragraph("Welcome, why not try /v1/time"))
 	})
 
 	r.Route("/v1", func(r chi.Router) {
@@ -40,11 +40,10 @@ func main() {
 
 func getTime(w http.ResponseWriter, r *http.Request) {
 	var now string = time.Now().Format(timeFormat)
-	var out string = paragraph(bold(now))
-	render.HTML(w, r, out)
+	render.JSON(w, r, map[string]string{"time": now})
 }
 
 func getHostName(w http.ResponseWriter, r *http.Request) {
 	name, _ := os.Hostname()
-	render.HTML(w, r, paragraph(bold(name)))
+	render.JSON(w, r, map[string]string{"hostname": name})
 }
