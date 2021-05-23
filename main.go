@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"net/http"
 	"os"
 	"time"
@@ -33,6 +34,7 @@ func main() {
 		r.Get("/hostname", getHostName)
 	})
 
+	fmt.Println("Listening...")
 	http.ListenAndServe(":3000", r)
 }
 
