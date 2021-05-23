@@ -26,7 +26,7 @@ func main() {
 
 	// Routes
 	r.Get("/", func(w http.ResponseWriter, r *http.Request) {
-		render.HTML(w, r, paragraph("Welcome, why not try /v1/time"))
+		render.HTML(w, r, paragraph("Welcome, why not try "+bold("/v1/time")))
 	})
 
 	r.Route("/v1", func(r chi.Router) {
