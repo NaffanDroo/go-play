@@ -25,4 +25,4 @@ jobs:
           token: ${{env.APP_TOKEN}}
           release-type: go
           package-name: go-play
-         
+ 
